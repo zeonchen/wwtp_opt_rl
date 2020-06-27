@@ -13,33 +13,8 @@ def start():
     gpsx.setTstop()
     :return:
     """
-    # # influent
-    # gpsx.setValue('sswater', inf[0])
-    # gpsx.setValue('sacwater', inf[1])
-    # gpsx.setValue('siwater', inf[2])
-    # gpsx.setValue('snhwater', inf[3])
-    # gpsx.setValue('spwater', inf[4])
-    # gpsx.setValue('xiwater', inf[5])
-    # gpsx.setValue('xswater', inf[6])
-    # gpsx.setValue('xbhwater', inf[7])
-    # gpsx.setValue('xiiwater', inf[8])
-    # gpsx.setValue('qconwater', inf[9])
-    # gpsx.setValue('temp', inf[10])
-    # gpsx.setValue('airtemp', inf[10])
-
     # aeration
     gpsx.setValue('setpsoaer', action[0])
-
-    # internal recirculation
-    # calculate flows via internal recirculation ratio
-    # int_ratio = action[1]
-    # int_re_flow = int_ratio * gpsx.getValue('qconwater')
-    # gpsx.setValue('qconrecycle', int_re_flow)
-    #
-    # # recirculation
-    # ratio = action[2]
-    # re_flow = ratio * gpsx.getValue('qconwater')
-    # gpsx.setValue('qconras', re_flow)
 
     # srt
     gpsx.setValue('qconwas', float(action[1]))
@@ -84,7 +59,7 @@ def cint():
                 variance[i] = np.array(state_dict[variable]).std()
 
         state.append(max(variance))
-        np.savetxt('D:\\rl_wwtp\\outputs\\mc3.txt', state)
+        np.savetxt('.\\outputs\\mc3.txt', state)
 
     # print('State saved!' + str(epoch))
     # sys.stdout.flush()
@@ -111,20 +86,19 @@ try:
 
         # get actions
         action = np.random.uniform(0.0, 1.0, 2) * [8, 200.0]
-        # action = np.array([2, 200.0])
 
         # run simulation
         runSim()
         gpsx.resetAllValues()
 
         # wait for state collection
-        state = np.loadtxt('D:\\rl_wwtp\\outputs\\mc3.txt')
+        state = np.loadtxt('.\\outputs\\mc3.txt')
         # print(state)
         # sys.stdout.flush()
         output = np.concatenate([action, state])
         output = pd.DataFrame(output).T
         df = df.append(output)
-        df.to_excel('D:\\rl_wwtp\\outputs\\mc_cass3.xlsx')
+        df.to_excel('.\\outputs\\mc_cass3.xlsx')
         epoch += 1
         # print('Now is epoch {}'.format(epoch))
         # sys.stdout.flush()
