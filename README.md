@@ -6,7 +6,7 @@ The DDPG learning process mainly follows the original paper and is introduced in
 Different from the original paper, Gaussian noise $\mathcal{N}$ rather than Ornstein-Uhlenbeck process is used for exploration.
 Hyperparameters of DDPG are fine tuned and listed in the Table. Before training, $1,000$ sample points are acquired by Monte Carlo sampling, actions are sampled from uniform distribution. The environment is achieved with the RL toolkit, Gym, developed by OpenAI. The value of DO ranges from 0 to 8 $mg/L$, and wastage rate ranges from 0 to 200 $m^3/d$, i.e. SRT $\geq$ 4.5 $days$. 
 
-$
+$$
 \renewcommand\arraystretch{0.8} 
 \begin{table}[htpb]
 \setlength{\belowcaptionskip}{10pt}
@@ -32,7 +32,7 @@ $
 \end{tabular}
 \label{Tab:para}
 \end{table}
-$
+$$
 
 ### 3. Result
 The result shows that optimization based on LCA has lowest environmental impacts. The cost scenario tends to lower cost but still has high GHG emissions and eutrophication potential. It is worth mentioning that the upgrading and reconstruction of WWTPs should be implemented with the consideration of other environmental impacts.
