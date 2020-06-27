@@ -10,7 +10,7 @@ Hyperparameters of DDPG are fine tuned. Before training, $1,000$ sample points a
 The result shows that optimization based on LCA has lowest environmental impacts. The cost scenario tends to lower cost but still has high GHG emissions and eutrophication potential. It is worth mentioning that the upgrading and reconstruction of WWTPs should be implemented with the consideration of other environmental impacts.
 
 <center class="half">
-<img src="./res/pic/reward.jpg" width = "500" alt="LCA reward" align=center/><img src="./res/pic/parameter.jpg" width = "500" alt="parameter" align=center/>
+<img src="./res/pic/reward.jpg" width = "200"/><img src="./res/pic/parameter.jpg" width = "200"/>
 </center>
 
 <img src="./res/pic/spider.jpg" width = "500" alt="spider" align=center/>
