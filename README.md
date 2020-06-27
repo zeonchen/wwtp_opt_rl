@@ -1,4 +1,4 @@
-# Optimization of operation parameters towards sustainable WWTPbased on deep reinforcement learning
+# Optimization of operation parameters towards sustainable WWTP based on deep reinforcement learning
 
 ## 1. Project Introduction
 The project applied reinforcement learning (RL) to achieve multi-variable optimization in wastewater treatment plants (WWTPs). Specifically, Deep Deterministic Policy Gradient (DDPG) is applied in an AAO-based WWTP to optimize dissolved oxygen (DO) and solid retention time (SRT). The reward function is specially designed as LCA-based form to achieve sustainability optimization. Four scenarios: baseline, LCA-oriented, cost-oriented and effluent-oriented are considered.
