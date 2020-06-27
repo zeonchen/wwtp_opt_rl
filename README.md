@@ -6,7 +6,7 @@ The result shows that optimization based on LCA has lowest environmental impacts
 
 
 <div align="center">![Screenshot from 2018-04-12 10:51:38.png](./res/pic/reward.jpg) 条件随机场模型示意图 </div>
-
+<div align="center">![an image]["./res/pic/reward.jpg"] 题注内容 </div>
 
 
 [Paper](http://www.google.com) 
