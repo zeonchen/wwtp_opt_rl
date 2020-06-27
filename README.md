@@ -18,8 +18,7 @@ The result shows that optimization based on LCA has lowest environmental impacts
 ## 4. Paper
 [Paper](http://www.google.com) 
 
-### .bib citation
-cite the paper as follows:
+###Cite the paper as follows:
 
     @article{
      
