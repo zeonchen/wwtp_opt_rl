@@ -12,12 +12,11 @@ The result shows that optimization based on LCA has lowest environmental impacts
 <center>
 <figure>
 <img src="./res/pic/reward.jpg" width = "500" alt="LCA reward" align=center/>
-
 <img src="./res/pic/parameter.jpg" width = "500" alt="parameter" align=center/>
-
-<img src="./res/pic/spider.jpg" width = "500" alt="spider" align=center/>
 /figure>
 </center>
+
+<img src="./res/pic/spider.jpg" width = "500" alt="spider" align=center/>
 
 ### 4. Paper
 [Paper](http://www.google.com) 
