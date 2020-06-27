@@ -4,7 +4,7 @@ The project applied reinforcement learning (RL) to achieve multi-variable optimi
 ### 2. Result
 The result shows that optimization based on LCA has lowest environmental impacts. The cost scenario tends to lower cost but still has high GHG emissions and eutrophication potential. It is worth mentioning that the upgrading and reconstruction of WWTPs should be implemented with the consideration of other environmental impacts.
 
-<img src="./res/pic/reward.jpg" alt="图片替换文本" width="500" height="313">
+<img src="./res/pic/reward.jpg" alt="图片替换文本" width="1000">
 
 
 [Paper](http://www.google.com) 
