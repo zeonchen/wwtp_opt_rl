@@ -33,30 +33,6 @@ min_action = env.action_space.low
 min_val = torch.tensor(1e-7).float().to(device)
 
 
-class Surrogate(nn.Module):
-    def __init__(self):
-        super(Surrogate, self).__init__()
-        # fully connected part: network structure
-        self.fc1 = nn.Linear(2, 128)
-        self.fc2 = nn.Linear(128, 256)
-        self.bn1 = nn.BatchNorm1d(256)
-        self.fc3 = nn.Linear(256, 512)
-        self.fc4 = nn.Linear(512, 256)
-        self.bn2 = nn.BatchNorm1d(256)
-        self.fc5 = nn.Linear(256, 128)
-        self.fc6 = nn.Linear(128, 16)
-
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.bn1(self.fc2(x)))
-        x = F.relu(self.fc3(x))
-        x = F.relu(self.bn2(self.fc4(x)))
-        x = F.relu(self.fc5(x))
-        x = self.fc6(x)
-
-        return x
-
-
 def main(i, phase, transfer=False):
     episode_reward = []
     episode_aer = []
@@ -65,9 +41,7 @@ def main(i, phase, transfer=False):
     ep_r = 0
     ep_a = 0
     ep_s = 0
-    max_r = -10
-    df = pd.DataFrame([0] * 10).T
-
+    
     if transfer:
         for name, param in agent.actor.named_parameters():
             if name.startswith('l4'):
@@ -81,12 +55,7 @@ def main(i, phase, transfer=False):
             else:
                 param.requires_grad = False
 
-    print("====================================")
-    print("Collection Experience...")
-    print("====================================")
-
     state = env.reset()
-    max_reward = -1.0
     for epoch in range(args.max_episode):
         # pre-sampling, acquire mu and std
         for t in count():
@@ -96,19 +65,7 @@ def main(i, phase, transfer=False):
             )  # add noise for exploration
 
             next_state, reward, done, info = env.step(action)
-
-            # Q = agent.critic(torch.tensor(state, dtype=torch.float32).unsqueeze(0).to(device),
-            #                       torch.tensor(action, dtype=torch.float32).unsqueeze(0).to(device))
-            # if max_r < reward:
-            #     max_r = reward
-            #     print(max_r, action)
-
-            # output = np.concatenate([action, [Q.item()], [reward]])
-            # output = pd.DataFrame(output).T
-            # df = df.append(output)
-            if reward > max_reward:
-                max_reward = reward
-                print(action, reward)
+            
             ep_r += reward
             ep_a += action[0]
             ep_s += action[1]
@@ -117,7 +74,6 @@ def main(i, phase, transfer=False):
             state = next_state
 
             if t >= args.max_length_of_trajectory:
-                # df.to_excel('D:\\rl_wwtp\\outputs\\tsne.xlsx')
                 if epoch % args.print_log == 0:
                     print("Ep_i \t{}, the ep_r is \t{:0.2f}, the step is \t{}, \t{}".format(epoch, ep_r / t, t, max_r))
                 episode_reward.append(ep_r / t)
@@ -134,9 +90,9 @@ def main(i, phase, transfer=False):
                 agent.update()
             torch.save(agent.actor, './outputs/ddpg/model/actor.pkl')
             torch.save(agent.critic, './outputs/ddpg/model/critic.pkl')
-            # save_output(episode_reward=episode_reward, save_path='./outputs/ddpg/res/reward/ddpg_{}_{}.txt'.format(i, phase))
-            # save_output(episode_reward=episode_aer, save_path='./outputs/ddpg/res/aer/aer_{}_{}.txt'.format(i, phase))
-            # save_output(episode_reward=episode_slu, save_path='./outputs/ddpg/res/slu/slu_{}_{}.txt'.format(i, phase))
+            save_output(episode_reward=episode_reward, save_path='./res/reward/ddpg_{}_{}.txt'.format(i, phase))
+            save_output(episode_reward=episode_aer, save_path='./res/aer/aer_{}_{}.txt'.format(i, phase))
+            save_output(episode_reward=episode_slu, save_path='./ddpg/res/slu/slu_{}_{}.txt'.format(i, phase))
 
 
 if __name__ == '__main__':
@@ -144,8 +100,8 @@ if __name__ == '__main__':
     phase = 1
     for i in range(num):
         print('Recursion {}'.format(i))
-        # if phase == 2:
-        #     args.exploration_noise = [0.1, 1]
+        if phase == 2:
+            args.exploration_noise = [0, 0]
         main(i, phase=phase)
 
     df_reward = concatenate_data('./outputs/ddpg/res/reward/', num=num, algorithm='DDPG')
