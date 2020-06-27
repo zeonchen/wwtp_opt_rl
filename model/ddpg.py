@@ -82,7 +82,7 @@ class Critic(nn.Module):
 class DDPG(object):
     def __init__(self, state_dim, action_dim, max_action, min_action, phase=1):
         if phase != 1:
-            self.actor = torch.load('D:\\rl_wwtp\\outputs\\ddpg\\model\\actor.pkl', map_location='cuda')
+            self.actor = torch.load('.\\outputs\\ddpg\\model\\actor.pkl', map_location='cuda')
             self.actor.to(device)
         elif phase == 1:
             self.actor = Actor(state_dim, action_dim, max_action, min_action).to(device)
@@ -92,7 +92,7 @@ class DDPG(object):
         self.actor_optimizer = optim.Adam(self.actor.parameters(), args.learning_rate)
 
         if phase != 1:
-            self.critic = torch.load('D:\\rl_wwtp\\outputs\\ddpg\\model\\critic.pkl', map_location='cuda')
+            self.critic = torch.load('.\\outputs\\ddpg\\model\\critic.pkl', map_location='cuda')
             self.critic.to(device)
         elif phase == 1:
             self.critic = Critic(state_dim, action_dim).to(device)
@@ -101,7 +101,7 @@ class DDPG(object):
         self.critic_optimizer = optim.Adam(self.critic.parameters(), args.learning_rate)
 
         self.replay_buffer = ReplayBuffer()
-        self.writer = SummaryWriter('D:\\rl_wwtp\\outputs\\ddpg\\log\\')
+        self.writer = SummaryWriter('.\\outputs\\ddpg\\log\\')
         self.num_critic_update_iteration = 0
         self.num_actor_update_iteration = 0
         # self.num_training = 0
