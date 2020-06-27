@@ -59,7 +59,7 @@ def cint():
                 variance[i] = np.array(state_dict[variable]).std()
 
         state.append(max(variance))
-        np.savetxt('.\\outputs\\mc3.txt', state)
+        np.savetxt('.\\res\\mc.txt', state)
 
     # print('State saved!' + str(epoch))
     # sys.stdout.flush()
@@ -92,18 +92,15 @@ try:
         gpsx.resetAllValues()
 
         # wait for state collection
-        state = np.loadtxt('.\\outputs\\mc3.txt')
+        state = np.loadtxt('.\\res\\mc.txt')
         # print(state)
         # sys.stdout.flush()
         output = np.concatenate([action, state])
         output = pd.DataFrame(output).T
         df = df.append(output)
-        df.to_excel('.\\outputs\\mc_cass3.xlsx')
         epoch += 1
-        # print('Now is epoch {}'.format(epoch))
-        # sys.stdout.flush()
 
-    # df.to_excel('D:\\rl_wwtp\\outputs\\mc_cass1.xlsx')
+    df.to_excel('D:\\rl_wwtp\\outputs\\mc_cass1.xlsx')
 
 except Exception:
     pass
