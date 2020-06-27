@@ -6,7 +6,6 @@ from gym.utils import seeding
 import numpy as np
 import time
 import sys
-sys.path.append("D:\\rl_wwtp\\")
 from model.objective import ObjectiveFunction
 from model.surrogate.nn import output
 from utils.tool import clear_text, txt_read
@@ -23,7 +22,7 @@ class RLWWTP(gym.Env):
     }
 
     def __init__(self):
-        self.df = pd.read_excel('D:/rl_wwtp/model/surrogate/data/data.xlsx')
+        self.df = pd.read_excel('.\\model\\surrogate\\data\\data.xlsx')
         self.energy_max, self.energy_min, self.cost_max, self.cost_min, self.eutro_max, \
         self.eutro_min, self.ghg_max, self.ghg_min, self.variance_max, self.variance_min = ObjectiveFunction.min_max(
             self.df.iloc[:, 2:])
@@ -33,15 +32,6 @@ class RLWWTP(gym.Env):
         self.max_sludge = 200.0
 
         # state parameters
-        self.max_cod = 60.0
-        self.max_bod = 20.0
-        self.max_tn = 20.0
-        self.max_tp = 1.5
-        self.max_nh3 = 8.0
-        self.max_no3 = 20.0
-        self.max_no2 = 10.0
-        self.max_ss = 20.0
-
         observation_high = np.array([1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 0])
         observation_low = np.array([0, 0, 0, 0, 0, 0, 0, 0, -10])
         action_high = np.array([self.max_o2, self.max_sludge])
@@ -61,11 +51,11 @@ class RLWWTP(gym.Env):
         return [seed]
 
     def step(self, action, parallel=2):
-        action_path = "D:\\rl_wwtp\\outputs\\parallel\\temp_action" + str(parallel) + ".txt"
+        action_path = ".\\outputs\\parallel\\temp_action.txt"
         np.savetxt(action_path, action)
 
         # today effluent
-        state_path = "D:\\rl_wwtp\\outputs\\parallel\\temp_state" + str(parallel) + ".txt"
+        state_path = ".\\outputs\\parallel\\temp_state.txt"
         today_effluent = txt_read(state_path)
         clear_text(action_path)  # clear data in temp_action.txt
         clear_text(state_path)
@@ -113,7 +103,6 @@ class RLWWTP(gym.Env):
         reward = ObjectiveFunction.weighted_sum(norm_cost, norm_energy, norm_eutro, norm_ghg)
         # reward = norm_cost * 0.5 + norm_eutro * 0.5
 
-        # if cod > 100 or nh4 > 25 or bod > 30 or ss > 30 or tp > 4:
         if cod > 60 or nh4 > 8 or tn > 20 or bod > 20 or ss > 20 or tp > 2:
             reward += 1
 
@@ -129,12 +118,7 @@ class RLWWTP(gym.Env):
         return state, -reward, False, {}
 
     def reset(self):
-        state = self.np_random.uniform(low=[3.71612442e+01, 1.93289124e+01, 1.39149473e+01, 1.30910726e+01,
-                                             4.45132182e+00, 3.07871281e+01, 1.26580252e+02, 1.20702415e+01, -1
-                                       ], high=[
-                                        3.71612442e+01, 1.93289124e+01, 1.39149473e+01, 1.30910726e+01,
-                                        4.45132182e+00, 3.07871281e+01, 1.26580252e+02, 1.20702415e+01, -1
-                                    ])
+        state = self.np_random.uniform(low=[0, 0, 0, 0, 0, 0, 0, 0, -1], high=[0, 0, 0, 0, 0, 0, 0, 0, -1])
 
         return np.array(state)
 
