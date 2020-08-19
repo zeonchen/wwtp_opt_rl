@@ -13,7 +13,7 @@ The value of DO ranges from 0 to 5 $mg/L$, and chemical dosage ranges from 0 to 
 ## 3. Result
 The result shows that optimization based on LCA has lowest environmental impacts. The comparison of different SRT indicates that a proper SRT can reduce negative impacts greatly. It is worth mentioning that the retrofitting of WWTPs should be implemented with the consideration of other environmental impacts except cost. Moreover, the comparison between DRL and genetic algorithm (GA) indicates that DRL can solve optimization problems effectively and has great extendibility. 
 
-<img src="./res/pic/reward.jpg" width = "420"/>
+<img src="./res/pic/reward.jpg" width = "410"/>
 
 <img src="./res/pic/parameter.jpg" width = "450"/>
 
