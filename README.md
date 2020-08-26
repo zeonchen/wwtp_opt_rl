@@ -20,11 +20,13 @@ The result shows that optimization based on LCA has lowest environmental impacts
 <img src="./res/pic/spider.jpg" width = "500" alt="spider" align=center/>
 
 ## 4. Paper
-[Paper](http://www.google.com) 
+[Paper](http://https://arxiv.org/pdf/2008.10417.pdf) 
 
 ### Cite the paper as follows:
 
-    @article{
-     
+    @inproceedings{Chena2020OptimizationOO,
+    title={Optimization of operation parameters towards sustainable WWTP based on deep reinforcement learning},
+    author={Kehua Chen and Hongcheng Wang and Borja Valverde Perezc and Luca Vezzaro and A. Wang},
+    year={2020}
     }
 
