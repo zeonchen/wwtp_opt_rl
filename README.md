@@ -10,6 +10,11 @@ Hyperparameters of MADDPG are fine tuned, before training, $10,000$ sample data 
 The value of DO ranges from 0 to 5 $mg/L$, and chemical dosage ranges from 0 to 800 $kg/d$. The first training is implemented under LCA scenario, with the SRT as
 15 days. For other scenarios, transfer learning is applied to narrow down required data size by freezing part of the network. 
 
+- State: The observation of agents includes historical information of five timesteps: (i) influent COD, TN, TP and NH$_3$-N (in ASM state form); (ii) inflow rate; (iii) time; (iv) current DO and dosage respectively. After each interaction, a reward signal is released by the environment. (In the code I provided, the environement only utilizes information of one timestep for experiments, which actually does not have stable performance).
+- Env: GPS-X and Gym are used to form the environment, the practitioners can also use surrogate models to run the code.
+- Reward: Rewards are formulated from LCA and LCCA perspectives, see paper for details.
+
+
 ## 3. Result
 The result shows thatoptimization based on LCA has lower environmental impacts compared to baseline scenario, as cost, energy consumption and greenhouse gas emissions reduce to 0.890 CNY/m$^3$-ww, 0.530 kWh/m$^3$-ww, 2.491 kg CO$_2$-eq/m$^3$-ww respectively. The cost-oriented control strategy exhibits comparable overall performance to the LCA-driven strategy since it sacrifices environmental benefits but has lower cost as 0.873 CNY/m$^3$-ww. 
 
