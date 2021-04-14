@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-from torch.nn import init
 from tensorboardX import SummaryWriter
 from maddpg.config_do import parser_do
 
@@ -54,9 +53,9 @@ class Actor(nn.Module):
         self.min_action = torch.from_numpy(min_action).to(device)
 
     def forward(self, x):
-        x = F.relu(self.l1(x))
-        x = F.relu(self.l2(x))
-        x = F.relu(self.l3(x))
+        x = torch.relu(self.l1(x))
+        x = torch.relu(self.l2(x))
+        x = torch.relu(self.l3(x))
         x = self.max_action * F.sigmoid(self.l4(x))
 
         return x
@@ -71,10 +70,12 @@ class Critic(nn.Module):
         self.l4 = nn.Linear(64, 1)
 
     def forward(self, x, u):
+        # a = torch.cat([x, u], 0)
         a = torch.cat([x, u], 1).unsqueeze(0)
-        x = F.relu(self.l1(a))
-        x = F.relu(self.l2(x))
-        x = F.relu(self.l3(x))
+        x = torch.relu(self.l1(a))
+        x = torch.relu(self.l2(x))
+        x = torch.relu(self.l3(x))
+        # represent = x[0].detach().cpu().numpy()
         x = self.l4(x)
         return x
 
@@ -131,6 +132,7 @@ class MADDPG(object):
 
             # update critic network
             critic_loss = F.mse_loss(current_Q, target_Q)
+            # self.writer.add_scalar('Loss/critic_loss', critic_loss, global_step=self.num_critic_update_iteration)
             self.critic_optimizer.zero_grad()
             critic_loss.backward()
             self.critic_optimizer.step()
@@ -140,6 +142,7 @@ class MADDPG(object):
             dosage = agents[1].actor(state)
             cur_action = torch.cat([do, dosage], 1).float()
             actor_loss = -self.critic(state, cur_action).mean()
+            # self.writer.add_scalar('Loss/actor_loss', actor_loss, global_step=self.num_actor_update_iteration)
 
             self.actor_optimizer.zero_grad()
             actor_loss.backward()
@@ -153,3 +156,4 @@ class MADDPG(object):
 
             self.num_actor_update_iteration += 1
             self.num_critic_update_iteration += 1
+            # self.writer.close()
