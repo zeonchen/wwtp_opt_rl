@@ -20,8 +20,6 @@ class RLWWTP(gym.Env):
     }
 
     def __init__(self):
-        # self.df = pd.read_excel('D:\\rl_wwtp\\outputs\\collected.xlsx')
-        # self.df = self.data_dict.iloc[:, 11:]
         self.of = ObjectiveFunction()
         self.energy_max, self.energy_min, self.cost_max, self.cost_min, self.eutro_max, \
         self.eutro_min, self.ghg_max, self.ghg_min = self.of.min_max(self.df.iloc[:, :])
