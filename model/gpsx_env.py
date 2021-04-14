@@ -15,89 +15,12 @@ def start():
     gpsx.setTstop()
     :return:
     """
-    # # influent
-    # gpsx.setValue('sswater', inf[0])
-    # gpsx.setValue('sacwater', inf[1])
-    # gpsx.setValue('siwater', inf[2])
-    # gpsx.setValue('snhwater', inf[3])
-    # gpsx.setValue('spwater', inf[4])
-    # gpsx.setValue('xiwater', inf[5])
-    # gpsx.setValue('xswater', inf[6])
-    # gpsx.setValue('xbhwater', inf[7])
-    # gpsx.setValue('xiiwater', inf[8])
-    # gpsx.setValue('qconwater', inf[9])
-    # gpsx.setValue('temp', inf[10])
-    # gpsx.setValue('airtemp', inf[10])
-    #
-    # # aeration
-    # gpsx.setValue('powerconaer', action[0])
-    #
-    # # internal recirculation
-    # # calculate flows via internal recirculation ratio
-    # # int_ratio = action[1]
-    # # int_re_flow = int_ratio * gpsx.getValue('qconwater')
-    # # gpsx.setValue('qconrecycle', int_re_flow)
-    # #
-    # # # recirculation
-    # # ratio = action[2]
-    # # re_flow = ratio * gpsx.getValue('qconwater')
-    # # gpsx.setValue('qconras', re_flow)
-    #
-    # # srt
-    # gpsx.setValue('qconwas', float(action[1]))
-
     # set time
     gpsx.setTstop(30)
     gpsx.setCint(0.041667*2)
 
 
 def cint():
-    # # acquire state values
-    # cod = gpsx.getValue('cod59')
-    # bod = gpsx.getValue('bod59')
-    # tn = gpsx.getValue('tn59')
-    # tp = gpsx.getValue('tp59')
-    # nh4 = gpsx.getValue('snh59')
-    # no3 = gpsx.getValue('snoa59')
-    # no2 = gpsx.getValue('snoi59')
-    # ss = gpsx.getValue('x59')
-    #
-    # sludge_tss = gpsx.getValue('x47')
-    # sludge_flow = gpsx.getValue('q47')
-    # sludge = gpsx.getValue('xmf47')
-    # onsite_energy = gpsx.getValue('totalpowerkw')
-    # bio = gpsx.getValue('electricitySavedwdig')
-    # outflow = gpsx.getValue('q59')
-    # process_ghg = gpsx.getValue('scopeOneTotal')
-    # methane = gpsx.getValue('scopeOneOffset')
-    #
-    # #inflow
-    # SO = 0
-    # SF = gpsx.getValue('ssraw')
-    # SA = gpsx.getValue('sacraw')
-    # SI = gpsx.getValue('siraw')
-    # SNH4 = gpsx.getValue('snhraw')
-    # SN2 = 0
-    # SNO3 = 0
-    # SPO = gpsx.getValue('spraw')
-    # SALK = 7
-    # XI = gpsx.getValue('xiraw')
-    # XS = gpsx.getValue('xsraw')
-    # XH = gpsx.getValue('xbhraw')
-    # XPAO = 0
-    # XPP = 0
-    # XPHA = 0
-    # XA = 0
-    # TSS = gpsx.getValue('xiiraw')
-    # XMEOH = 0
-    # XMEP = 0
-    # Q = gpsx.getValue('qconraw')
-    # T = gpsx.getValue('temp')
-    #
-    # COD = gpsx.getValue('codraw')
-    # TN = gpsx.getValue('tnraw')
-    # TP = gpsx.getValue('tpraw')
-    # NH3 = gpsx.getValue('snhraw')
     cod = gpsx.getValue('cod59')
     bod = gpsx.getValue('bod59')
     tn = gpsx.getValue('tn59')
