@@ -11,7 +11,7 @@ The value of DO ranges from 0 to 5 $mg/L$, and chemical dosage ranges from 0 to 
 15 days. For other scenarios, transfer learning is applied to narrow down required data size by freezing part of the network. 
 
 ## 3. Result
-The result shows thatoptimization based on LCA has lower environmental impacts compared to baseline scenario, as cost, energy consumption and greenhouse gas emissions reduce to 0.890 CNY/m3-ww, 0.530 kWh/m3-ww, 2.491 kg CO2-eq/m3-ww respectively. The cost-oriented control strategy exhibits comparable overall performance to the LCA-driven strategy since it sacrifices environmental benefits but has lower cost as 0.873 CNY/m3-ww. 
+The result shows thatoptimization based on LCA has lower environmental impacts compared to baseline scenario, as cost, energy consumption and greenhouse gas emissions reduce to 0.890 CNY/m$^3$-ww, 0.530 kWh/m$^3$-ww, 2.491 kg CO$_2$-eq/m$^3$-ww respectively. The cost-oriented control strategy exhibits comparable overall performance to the LCA-driven strategy since it sacrifices environmental benefits but has lower cost as 0.873 CNY/m$^3$-ww. 
 
 ## 4. Paper
 [Paper](https://arxiv.org/pdf/2008.10417.pdf) 
