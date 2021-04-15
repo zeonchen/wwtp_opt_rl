@@ -19,13 +19,16 @@ The value of DO ranges from 0 to 5 $mg/L$, and chemical dosage ranges from 0 to 
 The result shows thatoptimization based on LCA has lower environmental impacts compared to baseline scenario, as cost, energy consumption and greenhouse gas emissions reduce to 0.890 CNY/m$^3$-ww, 0.530 kWh/m$^3$-ww, 2.491 kg CO$_2$-eq/m$^3$-ww respectively. The cost-oriented control strategy exhibits comparable overall performance to the LCA-driven strategy since it sacrifices environmental benefits but has lower cost as 0.873 CNY/m$^3$-ww. 
 
 ## 4. Paper
-[Paper](https://arxiv.org/pdf/2008.10417.pdf) 
+[Paper](https://arxiv.org/abs/2008.10417) 
 
 ### Cite the paper as follows:
 
-    @inproceedings{Chena2020OptimizationOO,
-    title={Optimization of operation parameters towards sustainable WWTP based on deep reinforcement learning},
-    author={Kehua Chen and Hongcheng Wang and Borja Valverde Perezc and Luca Vezzaro and A. Wang},
-    year={2020}
+    @misc{chen2021optimal,
+      title={Optimal control towards sustainable wastewater treatment plants based on multi-agent reinforcement learning}, 
+      author={Kehua Chen and Hongcheng Wang and Borja Valverde-Perezc and Siyuan Zhai and Luca Vezzaro and Aijie Wang},
+      year={2021},
+      eprint={2008.10417},
+      archivePrefix={arXiv},
+      primaryClass={eess.SP}
     }
 
